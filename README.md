@@ -134,10 +134,6 @@ Open [ctrlp.vim](https://github.com/kien/ctrlp.vim) plugin:
     
     let g:ctrlp_map = '<c-f>'
 
-Open [PeepOpen](https://peepcode.com/products/peepopen) plugin:
-
-    map <leader>j :PeepOpen<cr>
-
 Managing the [NERD Tree](https://github.com/scrooloose/nerdtree) plugin:
 
     map <leader>nn :NERDTreeToggle<cr>
