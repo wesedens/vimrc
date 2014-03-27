@@ -35,11 +35,15 @@ vim-fugitive https://github.com/tpope/vim-fugitive
 vim-airline https://github.com/bling/vim-airline
 goyo.vim https://github.com/junegunn/goyo.vim
 vim-zenroom2 https://github.com/amix/vim-zenroom2
+syntastic https://github.com/scrooloose/syntastic
+vim-repeat https://github.com/tpope/vim-repeat
+vim-commentary https://github.com/tpope/vim-commentary
+vim-golang https://github.com/jnwhiteh/vim-golang
 """.strip()
 
 GITHUB_ZIP = '%s/archive/master.zip'
 
-SOURCE_DIR = path.join( path.dirname(__file__), 'sources_non_forked' )
+SOURCE_DIR = path.join(path.dirname(__file__), 'sources_non_forked')
 
 
 def download_extract_replace(plugin_name, zip_path, temp_dir, source_dir):

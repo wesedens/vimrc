@@ -1,4 +1,4 @@
-" MIT License. Copyright (c) 2013 Bailey Ling.
+" MIT License. Copyright (c) 2013-2014 Bailey Ling.
 " vim: et ts=2 sts=2 sw=2
 
 let s:skip_symbol = '…'
@@ -19,6 +19,7 @@ function! airline#extensions#tabline#unique_tail_improved#format(bufnr, buffers)
       let tokens = reverse(split(substitute(fnamemodify(name, ':p:.:h'), '\\', '/', 'g'), '/'))
       let token_index = 0
       for token in tokens
+        if token == '' | continue | endif
         if token == '.' | break | endif
         if !has_key(path_tokens, token_index)
           let path_tokens[token_index] = {}
