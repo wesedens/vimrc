@@ -52,20 +52,6 @@ let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
 
 
 """"""""""""""""""""""""""""""
-" => Peepopen
-""""""""""""""""""""""""""""""
-map <leader>j :PeepOpen<cr>
-
-
-
-""""""""""""""""""""""""""""""
-" => ZenCoding
-""""""""""""""""""""""""""""""
-" Enable all functions in all modes
-let g:user_zen_mode='a'
-
-
-""""""""""""""""""""""""""""""
 " => snipMate (beside <TAB> support <CTRL-j>)
 """"""""""""""""""""""""""""""
 ino <c-j> <c-r>=snipMate#TriggerSnippet()<cr>
@@ -119,3 +105,7 @@ nnoremap <silent> <leader>z :Goyo<cr>
 " => Syntastic (syntax checker)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_python_checkers=['pyflakes']
+let g:syntastic_c_checkers=['make','gcc']
+
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
