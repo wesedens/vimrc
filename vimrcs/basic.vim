@@ -141,18 +141,18 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable 
 
-try
-    colorscheme desert
-catch
-endtry
-
+set t_Co=256
 set background=dark
+try
+    colorscheme peaksea
+catch
+    colorscheme desert
+endtry
 
 " Set extra options when running in GUI mode
 if has("gui_running")
     set guioptions-=T
     set guioptions-=e
-    set t_Co=256
     set guitablabel=%M\ %t
 endif
 
