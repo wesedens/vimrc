@@ -34,8 +34,8 @@ set guioptions-=L
 " Colorscheme
 set background=dark
 try
-    "colorscheme peaksea
-    colorscheme desert
+    colorscheme peaksea
+    "colorscheme desert
 catch
 endtry
 
