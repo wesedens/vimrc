@@ -78,10 +78,12 @@ endglobal
 snippet box "A nice box with the current comment symbol" b
 `!p
 box = make_box(len(t[1]))
-snip.rv = box[0] + '\n' + box[1]
+snip.rv = box[0]
+snip += box[1]
 `${1:content}`!p
 box = make_box(len(t[1]))
-snip.rv = box[2] + '\n' + box[3]`
+snip.rv = box[2]
+snip += box[3]`
 $0
 endsnippet
 
@@ -89,10 +91,12 @@ snippet bbox "A nice box over the full width" b
 `!p
 width = int(vim.eval("&textwidth")) or 71
 box = make_box(len(t[1]), width)
-snip.rv = box[0] + '\n' + box[1]
+snip.rv = box[0]
+snip += box[1]
 `${1:content}`!p
 box = make_box(len(t[1]), width)
-snip.rv = box[2] + '\n' + box[3]`
+snip.rv = box[2]
+snip += box[3]`
 $0
 endsnippet
 
@@ -118,6 +122,16 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
 tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
 vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
 no sea takimata sanctus est Lorem ipsum dolor sit amet.
+endsnippet
+
+##########################
+# VIM MODELINE GENERATOR #
+##########################
+# See advice on `:help 'tabstop'` for why these values are set. Uses second
+# modeline form ('set') to work in languages with comment terminators
+# (/* like C */).
+snippet modeline "Vim modeline"
+vim`!v ':set '. (&expandtab ? printf('et sw=%i ts=%i', &sw, &ts) : printf('noet sts=%i sw=%i ts=%i', &sts, &sw, &ts)) . (&tw ? ' tw='. &tw : '') . ':'`
 endsnippet
 
 # vim:ft=snippets:
