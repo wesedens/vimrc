@@ -53,4 +53,9 @@ function! CoffeeScriptFold()
 endfunction
 au FileType coffee call CoffeeScriptFold()
 
+
+""""""""""""""""""""""""""""""
+" => git commit message
+""""""""""""""""""""""""""""""
+au FileType gitcommit set tw=72 | set spell
 au FileType gitcommit call setpos('.', [0, 1, 1, 0])
