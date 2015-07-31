@@ -45,16 +45,6 @@ endfunction
 
 
 """"""""""""""""""""""""""""""
-" => CoffeeScript section
-"""""""""""""""""""""""""""""""
-function! CoffeeScriptFold()
-    setl foldmethod=indent
-    setl foldlevelstart=1
-endfunction
-au FileType coffee call CoffeeScriptFold()
-
-
-""""""""""""""""""""""""""""""
 " => git commit message
 """"""""""""""""""""""""""""""
 au FileType gitcommit set tw=72 | set spell
