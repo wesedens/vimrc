@@ -74,14 +74,12 @@ I recommend reading the docs of these plugins to understand them better. Each of
 * [ctrlp.vim](https://github.com/kien/ctrlp.vim): Fuzzy file, buffer, mru and tag finder. In my config it's mapped to `<Ctrl+F>`, because `<Ctrl+P>` is used by YankRing
 * [mru.vim](https://github.com/vim-scripts/mru.vim): Plugin to manage Most Recently Used (MRU) files. Includes my own fork which adds syntax highlighting to MRU. This plugin can be opened with `<leader+f>`
 * [open_file_under_cursor.vim](https://github.com/amix/open_file_under_cursor.vim): Open file under cursor when pressing `gf`
-* [zencoding](https://github.com/mattn/emmet-vim): Expanding abbreviation like zen-coding, very useful for editing XML, HTML.
 * [vim-indent-object](https://github.com/michaeljsmith/vim-indent-object): Defines a new text object representing lines of code at the same indent level. Useful for python/vim scripts
 * [taglist.vim](https://github.com/vim-scripts/taglist.vim): Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
 * [vim-multiple-cursors](https://github.com/terryma/vim-multiple-cursors): Sublime Text style multiple selections for Vim, CTRL+N is remapped to CTRL+S (due to YankRing)
 * [vim-expand-region](https://github.com/terryma/vim-expand-region): Allows you to visually select increasingly larger regions of text using the same key combination.
 * [vim-airline](https://github.com/bling/vim-airline): Lean & mean status/tabline for vim that's light as air (replacing powerline)
 * [vim-fugitive](https://github.com/tpope/vim-fugitive): A Git wrapper so awesome, it should be illegal
-* [goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2): 
 Remove all clutter and focus only on the essential. Similar to iA Writer or Write Room [Read more here](http://amix.dk/blog/post/19744)
 * [vim-commentary](https://github.com/tpope/vim-commentary): Comment stuff out.  Use `gcc` to comment out a line (takes a count), `gc` to comment out the target of a motion. `gcu` uncomments a set of adjacent commented lines.
 * [syntastic](https://github.com/scrooloose/syntastic): Syntax checking hacks for vim
@@ -98,12 +96,10 @@ Remove all clutter and focus only on the essential. Similar to iA Writer or Writ
 
 ## Included modes
 
-* [vim-coffee-script](https://github.com/kchmck/vim-coffee-script)
 * [vim-less](https://github.com/groenewege/vim-less)
 * [vim-bundle-mako](https://github.com/sophacles/vim-bundle-mako)
 * [vim-markdown](https://github.com/tpope/vim-markdown)
 * [nginx.vim](https://github.com/vim-scripts/nginx.vim): Highlights configuration files for nginx
-* [vim-golang](https://github.com/jnwhiteh/vim-golang)
 
 
 ## How to include your own stuff?
@@ -113,13 +109,6 @@ After you have installed the setup you can create **~/.vim_runtime/my_configs.vi
 	~/.vim_runtime (master)> cat my_configs.vim
 	map <leader>ct :cd ~/Desktop/Todoist/todoist<cr>
 	map <leader>cw :cd ~/Desktop/Wedoist/wedoist<cr> 
-
-You can also install your own plugins, for instance, via pathogen we can install [vim-rails](https://github.com/tpope/vim-rails):
-
-	cd ~/.vim_runtime
-	git clone git://github.com/tpope/vim-rails.git sources_non_forked/vim-rails
-	
-Now you have vim-rails installed ;-)
 
 
 ## Key Mappings
@@ -144,10 +133,6 @@ Managing the [NERD Tree](https://github.com/scrooloose/nerdtree) plugin:
     map <leader>nb :NERDTreeFromBookmark 
     map <leader>nf :NERDTreeFind<cr>
 
-[goyo.vim](https://github.com/junegunn/goyo.vim) and [vim-zenroom2](https://github.com/amix/vim-zenroom2) lets you only focus on one thing at a time. It removes all the distractions and centers the content. It has a special look when editing Markdown, reStructuredText and textfiles. It only has one mapping.
-
-    map <leader>z :Goyo<cr>
-
 ### Normal mode mappings
 
 Fast saving of a buffer:
@@ -159,12 +144,6 @@ Treat long lines as break lines (useful when moving around in them):
 	map j gj
 	map k gk
 	
-Map `<Space>` to `/` (search) and `<Ctrl>+<Space>` to `?` (backwards search):
-	
-	map <space> /
-	map <c-space> ?
-	map <silent> <leader><cr> :noh<cr>
-
 Disable highlight when `<leader><cr>` is pressed:
 	
 	map <silent> <leader><cr> :noh<cr>
@@ -221,16 +200,6 @@ Toggle paste mode on and off:
 
 
 ### Insert mode mappings
-
-Quickly insert parenthesis/brackets/etc.:
-
-    inoremap $1 ()<esc>i
-    inoremap $2 []<esc>i
-    inoremap $3 {}<esc>i
-    inoremap $4 {<esc>o}<esc>O
-    inoremap $q ''<esc>i
-    inoremap $e ""<esc>i
-    inoremap $t <><esc>i
 
 Insert the current date and time (useful for timestamps):
 

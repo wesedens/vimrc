@@ -78,12 +78,6 @@ vmap <Leader>P "+P
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en' 
-set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-
 " Turn on the WiLd menu
 set wildmenu
 
@@ -128,6 +122,7 @@ set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch 
+
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -362,8 +357,6 @@ map <leader>x :e ~/buffer.md<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
