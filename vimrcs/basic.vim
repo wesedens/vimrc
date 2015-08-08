@@ -65,12 +65,18 @@ nnoremap <Leader>w :w<CR>
 command W w !sudo tee % > /dev/null
 
 " Copy and paste to system clipboard
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+vmap <Leader>y  "0y
+vmap <Leader>d  "0d
+nmap <Leader>p  "0p
+nmap <Leader>P  "0P
+vmap <Leader>p  "0p
+vmap <Leader>P  "0P
+vmap <Leader>yy "+y
+vmap <Leader>dd "+d
+nmap <Leader>pp "+p
+nmap <Leader>PP "+P
+vmap <Leader>pp "+p
+vmap <Leader>PP "+P
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -362,7 +368,7 @@ map <leader>q :e ~/buffer<cr>
 map <leader>x :e ~/buffer.md<cr>
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+map <leader>pm :setlocal paste!<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
