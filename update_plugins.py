@@ -8,33 +8,22 @@ from os import path
 
 #--- Globals ----------------------------------------------
 PLUGINS = """
-ack.vim https://github.com/mileszs/ack.vim
 ag.vim https://github.com/rking/ag.vim
 bufexplorer https://github.com/corntrace/bufexplorer
 ctrlp.vim https://github.com/kien/ctrlp.vim
-mayansmoke https://github.com/vim-scripts/mayansmoke
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
 open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
-snipmate-snippets https://github.com/scrooloose/snipmate-snippets
 syntastic https://github.com/scrooloose/syntastic
-taglist.vim https://github.com/vim-scripts/taglist.vim
-tlib https://github.com/vim-scripts/tlib
-vim-addon-mw-utils https://github.com/MarcWeber/vim-addon-mw-utils
 vim-airline https://github.com/bling/vim-airline
-vim-bundle-mako https://github.com/sophacles/vim-bundle-mako
 vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
 vim-expand-region https://github.com/terryma/vim-expand-region
 vim-fugitive https://github.com/tpope/vim-fugitive
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
-vim-less https://github.com/groenewege/vim-less
 vim-markdown https://github.com/tpope/vim-markdown
 vim-multiple-cursors https://github.com/terryma/vim-multiple-cursors
-vim-pyte https://github.com/therubymug/vim-pyte
 vim-repeat https://github.com/tpope/vim-repeat
-vim-snipmate https://github.com/garbas/vim-snipmate
-vim-snippets https://github.com/honza/vim-snippets
 vim-surround https://github.com/tpope/vim-surround
 """.strip()
 
