@@ -16,7 +16,8 @@ nginx.vim https://github.com/vim-scripts/nginx.vim
 open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
 peaksea https://github.com/vim-scripts/peaksea
 syntastic https://github.com/scrooloose/syntastic
-vim-airline https://github.com/bling/vim-airline
+vim-airline https://github.com/vim-airline/vim-airline
+vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
 vim-expand-region https://github.com/terryma/vim-expand-region
