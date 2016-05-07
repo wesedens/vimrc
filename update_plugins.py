@@ -10,7 +10,7 @@ from os import path
 PLUGINS = """
 ag.vim https://github.com/rking/ag.vim
 bufexplorer https://github.com/corntrace/bufexplorer
-ctrlp.vim https://github.com/kien/ctrlp.vim
+ctrlp.vim https://github.com/ctrlpvim/ctrlp.vim
 mru.vim https://github.com/vim-scripts/mru.vim
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
