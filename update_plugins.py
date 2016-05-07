@@ -14,6 +14,7 @@ ctrlp.vim https://github.com/kien/ctrlp.vim
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
 open_file_under_cursor.vim https://github.com/amix/open_file_under_cursor.vim
+peaksea https://github.com/vim-scripts/peaksea
 syntastic https://github.com/scrooloose/syntastic
 vim-airline https://github.com/bling/vim-airline
 vim-colors-solarized https://github.com/altercation/vim-colors-solarized
