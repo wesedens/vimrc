@@ -9,7 +9,7 @@ from os import path
 #--- Globals ----------------------------------------------
 PLUGINS = """
 ag.vim https://github.com/rking/ag.vim
-bufexplorer https://github.com/corntrace/bufexplorer
+bufexplorer https://github.com/jlanzarotta/bufexplorer
 ctrlp.vim https://github.com/ctrlpvim/ctrlp.vim
 nerdtree https://github.com/scrooloose/nerdtree
 nginx.vim https://github.com/vim-scripts/nginx.vim
