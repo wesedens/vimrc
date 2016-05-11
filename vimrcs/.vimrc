@@ -79,14 +79,8 @@ set showmatch                  " Show matching brackets when text indicator is o
 set smartcase                  " When searching try to be smart about cases
 set smartindent                " smart autoindenting when starting a new line.
 set smarttab                   " sw at the start of the line, sts everywhere else
-
-" Specify the behavior when switching between buffers 
-try
-  set stal=2
-  set switchbuf=useopen,usetab
-catch
-endtry
-
+set	showtabline=1              " only if there are at least two tab pages
+set switchbuf=useopen,usetab   " use open window/tab when switching buffers
 set t_vb=
 set tabstop=4                  " 1 tab == 4 spaces
 set timeoutlen=1200            " A little bit more time for macros
@@ -162,6 +156,7 @@ map <leader>nf :NERDTreeFind<cr>
 
 " => vim-airline config (force color)
 let g:airline_theme="luna"
+let g:airline#extensions#tabline#enabled = 1
 
 " => Syntastic (syntax checker)
 let g:syntastic_python_checkers=['pyflakes']
