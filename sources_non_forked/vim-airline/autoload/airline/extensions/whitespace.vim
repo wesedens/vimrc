@@ -51,6 +51,7 @@ endfunction
 
 function! airline#extensions#whitespace#check()
   if &readonly || !&modifiable || !s:enabled || line('$') > s:max_lines
+          \ || get(b:, 'airline_whitespace_disabled', 0)
     return ''
   endif
 
@@ -105,7 +106,7 @@ function! airline#extensions#whitespace#check()
       endif
     endif
   endif
-  return b:airline_whitespace_check
+  return airline#util#shorten(b:airline_whitespace_check, 120, 9)
 endfunction
 
 function! airline#extensions#whitespace#toggle()
@@ -136,6 +137,13 @@ function! airline#extensions#whitespace#init(...)
   unlet! b:airline_whitespace_check
   augroup airline_whitespace
     autocmd!
-    autocmd CursorHold,BufWritePost * unlet! b:airline_whitespace_check
+    autocmd CursorHold,BufWritePost * call <sid>ws_refresh()
   augroup END
+endfunction
+
+function! s:ws_refresh()
+  unlet! b:airline_whitespace_check
+  if get(g:, 'airline_skip_empty_sections', 0)
+    exe ':AirlineRefresh'
+  endif
 endfunction

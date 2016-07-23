@@ -20,6 +20,7 @@ vim-airline https://github.com/vim-airline/vim-airline
 vim-airline-themes https://github.com/vim-airline/vim-airline-themes
 vim-colors-solarized https://github.com/altercation/vim-colors-solarized
 vim-commentary https://github.com/tpope/vim-commentary
+vim-dispatch https://github.com/tpope/vim-dispatch
 vim-expand-region https://github.com/terryma/vim-expand-region
 vim-fugitive https://github.com/tpope/vim-fugitive
 vim-indent-object https://github.com/michaeljsmith/vim-indent-object
