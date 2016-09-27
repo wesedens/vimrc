@@ -1,7 +1,7 @@
-*bufexplorer.txt*              Buffer Explorer       Last Change: 01 Apr 2016
+*bufexplorer.txt*              Buffer Explorer       Last Change: 20 Sep 2016
 
 Buffer Explorer                                *buffer-explorer* *bufexplorer*
-                                Version 7.4.9
+                                Version 7.4.11
 
 Plugin for easily exploring (or browsing) Vim|:buffers|.
 
@@ -196,7 +196,7 @@ directory, use: >
 The default is to show absolute paths.
 
                                                    *g:bufExplorerShowTabBuffer*
-To control weither or not to show buffers on for the specific tab or not, use: >
+To control whether or not to show buffers on for the specific tab or not, use: >
   let g:bufExplorerShowTabBuffer=0        " No.
   let g:bufExplorerShowTabBuffer=1        " Yes.
 The default is not to show.
@@ -253,6 +253,14 @@ The default is 0, so that the size is set by Vim.
 ===============================================================================
 CHANGE LOG                                              *bufexplorer-changelog*
 
+7.4.11   September, 20, 2016
+    - Thanks to jpmv27 for reworking the per-tab buffer listing code.  Fix for
+      g:bufExplorerShowTabBuffer is not working correctly and other "gliches"
+      when the ShotTabBuffer option is enabled.  For example old code would not
+      correctly handle adding/deleting a tab that wasn't the highest-numbered
+      tab.
+7.4.10   August 26, 2016
+    - Thanks to buddylindsey for fixing a misspelling in the docs.
 7.4.9    April 01, 2016
     - Thanks to ivegotasthma for supplying a patch to fix a major issue with
       plugin performance when lots of buffers are open.
@@ -719,7 +727,7 @@ won't list names.
 ===============================================================================
 COPYRIGHT                                               *bufexplorer-copyright*
 
-Copyright (c) 2001-2014, Jeff Lanzarotta
+Copyright (c) 2001-2016, Jeff Lanzarotta
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
