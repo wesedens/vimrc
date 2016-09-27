@@ -79,7 +79,7 @@ set showmatch                  " Show matching brackets when text indicator is o
 set smartcase                  " When searching try to be smart about cases
 set smartindent                " smart autoindenting when starting a new line.
 set smarttab                   " sw at the start of the line, sts everywhere else
-set	showtabline=1              " only if there are at least two tab pages
+set showtabline=1              " only if there are at least two tab pages
 set switchbuf=useopen,usetab   " use open window/tab when switching buffers
 set t_vb=
 set tabstop=4                  " 1 tab == 4 spaces
@@ -188,6 +188,17 @@ function! s:scratch_maps() abort
 endfunction
 
 command! -bar Invert :let &background = (&background=="light"?"dark":"light")
+
+function! g:ToggleColorColumn()
+    if exists('+colorcolumn')
+        if &colorcolumn != ''
+            setlocal colorcolumn&
+        else
+            setlocal colorcolumn=80
+        endif
+        highlight ColorColumn ctermbg=23 guibg=lightblue
+    endif
+endfunction
 
 " Old Functions {{{2
 " Delete trailing white space on save, useful for Python
@@ -392,6 +403,9 @@ map <leader>pm :setlocal paste!<cr>
 
 " => General abbreviations
 iab xdate <c-r>=strftime("%Y/%m/%d %H:%M:%S")<cr>
+
+" highlight the 80th color column
+nnoremap <silent> <leader>hh :call g:ToggleColorColumn()<CR>
 
 " }}}2
 " Section: Autocommands {{{1
