@@ -267,13 +267,13 @@ nnoremap Y  y$
 "  command! -buffer -bar -range -nargs=? Slide :exe 'norm m`'|exe '<line1>,<line2>move'.((<q-args> < 0 ? <line1>-1 : <line2>)+(<q-args>=='' ? 1 : <q-args>))|exe 'norm ``'
 "endif
 "
-"map  <F1>   <Esc>
-"map! <F1>   <Esc>
-"nmap <silent> <F6> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
+map  <F1>   <Esc>
+map! <F1>   <Esc>
+nmap <silent> <F6> :if &previewwindow<Bar>pclose<Bar>elseif exists(':Gstatus')<Bar>exe 'Gstatus'<Bar>else<Bar>ls<Bar>endif<CR>
 "nmap <silent> <F7> :if exists(':Lcd')<Bar>exe 'Lcd'<Bar>elseif exists(':Cd')<Bar>exe 'Cd'<Bar>else<Bar>lcd %:h<Bar>endif<CR>
-"map <F8>    :Make<CR>
-"map <F9>    :Dispatch<CR>
-"map <F10>   :Start<CR>
+map <F8>    :Make<CR>
+map <F9>    :Dispatch<CR>
+map <F10>   :Start<CR>
 "
 "noremap  <S-Insert> <MiddleMouse>
 "noremap! <S-Insert> <MiddleMouse>
