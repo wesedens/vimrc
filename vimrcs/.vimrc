@@ -120,7 +120,7 @@ if !empty($SUDO_USER) && $USER !=# $SUDO_USER
   set backupdir-=~/tmp
 endif
 
-" Plugin Settings {{{2
+" Plugin Settings {{{1
 let g:is_bash = 1
 
 " => bufExplorer plugin
@@ -162,7 +162,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:syntastic_python_checkers=['pyflakes']
 let g:syntastic_c_checkers=['make','gcc']
 let g:syntastic_enable_signs=1
-" }}}2
+
+" => vim-linux-coding-style
+let g:linuxsty_patterns = [ "/usr/src/", "/linux/" ]
+" }}}1
 
 
 " }}}1
