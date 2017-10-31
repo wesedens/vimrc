@@ -165,6 +165,9 @@ let g:syntastic_enable_signs=1
 
 " => vim-linux-coding-style
 let g:linuxsty_patterns = [ "/usr/src/", "/linux/" ]
+
+" => FZF
+set runtimepath+=~/.fzf
 " }}}1
 
 
