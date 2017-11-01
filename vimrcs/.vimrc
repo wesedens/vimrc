@@ -160,16 +160,21 @@ map <leader>nf :NERDTreeFind<cr>
 let g:airline_theme="luna"
 let g:airline#extensions#tabline#enabled = 1
 
-" => Syntastic (syntax checker)
-let g:syntastic_python_checkers=['pyflakes']
-let g:syntastic_c_checkers=['make','gcc']
-let g:syntastic_enable_signs=1
-
 " => vim-linux-coding-style
 let g:linuxsty_patterns = [ "/usr/src/", "/linux/" ]
 
 " => FZF
 set runtimepath+=~/.fzf
+
+" => ale
+let g:ale_linters = {
+\   'c': ['clangtidy'],
+\   'cpp': ['clangtidy'],
+\}
+
+let g:ale_lint_on_text_changed = 1
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_save = 1
 
 
 " }}}1
