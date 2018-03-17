@@ -61,16 +61,20 @@ function! s:expand_lnum(string, ...) abort
   let old = v:lnum
   try
     let v:lnum = a:0 ? a:1 : 0
+    let v = substitute(v, '<\%(lnum\|line1\|line2\)>'.s:flags,
+          \ v:lnum > 0 ? '\=fnamemodify(v:lnum, substitute(submatch(0), "^[^>]*>", "", ""))' : '', 'g')
     let sbeval = '\=escape(s:sandbox_eval(submatch(1)), "!#%")'
     let v = substitute(v, '`=\([^`]*\)`', sbeval, 'g')
     let v = substitute(v, '`-=\([^`]*\)`', v:lnum < 1 ? sbeval : '', 'g')
     let v = substitute(v, '`+=\([^`]*\)`', v:lnum > 0 ? sbeval : '', 'g')
-    let v = substitute(v, '<\%(lnum\|line1\|line2\)>'.s:flags,
-          \ v:lnum > 0 ? '\=fnamemodify(v:lnum, submatch(0)[6:-1])' : '', 'g')
     return substitute(v, '^\s\+\|\s\+$', '', 'g')
   finally
     let v:lnum = old
   endtry
+endfunction
+
+function! s:efm_lookup(key, ...) abort
+  return substitute(matchstr(','.(a:0 ? a:1 : &efm), '\C,%\\&' . a:key . '=\zs\%(\\.\|[^\,]\)*'), '\\\ze[\,]\|%\ze[%f]', '', 'g')
 endfunction
 
 function! s:escape_path(path) abort
@@ -554,6 +558,7 @@ function! dispatch#compile_command(bang, args, count) abort
   let [args, request] = s:extract_opts(args)
 
   if args =~# '^:\S'
+    call dispatch#autowrite()
     return s:wrapcd(get(request, 'directory', getcwd()),
           \ (a:count > 0 ? a:count : '').substitute(args[1:-1], '\>', (a:bang ? '!' : ''), ''))
   endif
@@ -568,6 +573,9 @@ function! dispatch#compile_command(bang, args, count) abort
 
   if executable ==# '_'
     let request.args = matchstr(args, '_\s*\zs.*')
+    if empty(request.args)
+      let request.args = s:expand_lnum(s:efm_lookup('default'))
+    endif
     let request.program = &makeprg
     if &makeprg =~# '\$\*'
       let request.command = substitute(&makeprg, '\$\*', request.args, 'g')
@@ -674,8 +682,8 @@ function! dispatch#focus(...) abort
   if haslnum
     let compiler = s:expand_lnum(compiler, a:1)
     let [compiler, opts] = s:extract_opts(compiler)
-    if compiler =~# '^:\S' && a:1 > 0
-      let compiler = substitute(compiler, ':\zs', a:1, 'g')
+    if compiler =~# '^:[[:alpha:]]' && a:1 > 0
+      let compiler = substitute(compiler, '^:\zs', a:1, '')
     endif
     if has_key(opts, 'compiler') && opts.compiler != dispatch#compiler_for_program(compiler)
       let compiler = '-compiler=' . opts.compiler . ' ' . compiler
@@ -697,6 +705,18 @@ function! dispatch#focus(...) abort
   endif
 endfunction
 
+function! s:translate_focus(args) abort
+  if a:args ==# ':Dispatch'
+    return s:expand_lnum(dispatch#focus()[0], 0)
+  elseif a:args =~# '^:[.$]Dispatch$'
+    return dispatch#focus(line(a:args[1]))[0]
+  elseif a:args =~# '^:\d\+Dispatch$'
+    return dispatch#focus(+matchstr(a:args, '\d\+'))[0]
+  else
+    return a:args
+  endif
+endfunction
+
 function! dispatch#focus_command(bang, args, count) abort
   let [args, opts] = s:extract_opts(a:args)
   let args = escape(dispatch#expand(args), '#%')
@@ -714,12 +734,12 @@ function! dispatch#focus_command(bang, args, count) abort
     let [what, why] = dispatch#focus(a:count)
     echo a:count < 0 ? printf('%s is %s', why, what) : what
   elseif a:bang
-    let w:dispatch = args
+    let w:dispatch = s:translate_focus(a:args)
     let [what, why] = dispatch#focus(a:count)
     echo 'Set window local focus to ' . what
   else
+    let g:dispatch = s:translate_focus(a:args)
     unlet! w:dispatch t:dispatch
-    let g:dispatch = args
     let [what, why] = dispatch#focus(a:count)
     echo 'Set global focus to ' . what
   endif
@@ -860,6 +880,9 @@ endfunction
 
 function! s:cgetfile(request, ...) abort
   let request = s:request(a:request)
+  if !has_key(request, 'handler')
+    throw 'Bad request ' . string(request)
+  endif
   let efm = &l:efm
   let makeprg = &l:makeprg
   let compiler = get(b:, 'current_compiler', '')
@@ -876,10 +899,16 @@ function! s:cgetfile(request, ...) abort
       let &l:efm = request.format
     endif
     let &l:makeprg = request.command
+    let title = ':Dispatch '.escape(request.expanded, '%#') . ' ' . s:postfix(request)
     silent doautocmd QuickFixCmdPre cgetfile
-    execute 'noautocmd cgetfile' fnameescape(request.file)
+    if exists(':chistory') && get(getqflist({'title': 1}), 'title', '') ==# title
+      call setqflist([], 'r')
+      execute 'noautocmd caddfile' fnameescape(request.file)
+    else
+      execute 'noautocmd cgetfile' fnameescape(request.file)
+    endif
     if exists(':chistory')
-      call setqflist([], 'r', {'title': ':Dispatch '.escape(request.expanded, '%#') . ' ' . s:postfix(request)})
+      call setqflist([], 'r', {'title': title})
     endif
     silent doautocmd QuickFixCmdPost cgetfile
   catch '^E40:'
