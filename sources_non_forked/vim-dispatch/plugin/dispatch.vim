@@ -1,9 +1,9 @@
 " Location:     plugin/dispatch.vim
 " Maintainer:   Tim Pope <http://tpo.pe/>
-" Version:      1.4
+" Version:      1.5
 " GetLatestVimScripts: 4504 1 :AutoInstall: dispatch.vim
 
-if exists("g:loaded_dispatch") || v:version < 700 || &cp
+if exists("g:loaded_dispatch") || v:version < 700 || &compatible
   finish
 endif
 let g:loaded_dispatch = 1
@@ -26,6 +26,33 @@ command! -bang -nargs=* -complete=customlist,dispatch#command_complete Start
       \ execute dispatch#start_command(<bang>0, <q-args>)
 
 command! -bang -bar Copen call dispatch#copen(<bang>0)
+
+function! s:map(mode, lhs, rhs, ...) abort
+  let flags = (a:0 ? a:1 : '') . (a:rhs =~# '^<Plug>' ? '' : '<script>')
+  let head = a:lhs
+  let tail = ''
+  let keys = get(g:, a:mode.'remap', {})
+  if type(keys) != type({})
+    return
+  endif
+  while !empty(head)
+    if has_key(keys, head)
+      let head = keys[head]
+      if empty(head)
+        return
+      endif
+      break
+    endif
+    let tail = matchstr(head, '<[^<>]*>$\|.$') . tail
+    let head = substitute(head, '<[^<>]*>$\|.$', '', '')
+  endwhile
+  exe a:mode.'map' flags head.tail a:rhs
+endfunction
+
+nmap <script> <SID>:.    :<C-R>=getcmdline() =~ ',' ? "\0250" : ""<CR>
+call s:map('n', 'm<CR>', '<SID>:.Make<CR>')
+call s:map('n', 'm<Space>', '<SID>:.Make<Space>')
+call s:map('n', 'm!', '<SID>:.Make!')
 
 function! DispatchComplete(id) abort
   return dispatch#complete(a:id)
