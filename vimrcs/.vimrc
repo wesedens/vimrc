@@ -90,6 +90,7 @@ set tm=500
 set tw=500
 
 setglobal tags=./tags;
+setglobal tags+=./.git/tags;
 
 if exists('+undofile')
   set undodir=~/.vim_runtime/temp_dirs/undodir
